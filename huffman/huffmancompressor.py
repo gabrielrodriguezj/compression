@@ -4,6 +4,7 @@
 
 @author: gabrielrodriguezj
 """
+from alphabet import Alphabet
 
 class HuffmanCompressor:
     LENGTH_CHARACTER_BITS = 8; #8 bits for encoding and decoding.
@@ -13,7 +14,7 @@ class HuffmanCompressor:
     
         
     def compress(self, strToCompress):
-        strToCompress = strToCompress
+        strToCompress = strToCompress + Alphabet.END_STRING_CHARACTER
         self._lstBytesCompress = []
         
         self._strBinary = ""
@@ -35,7 +36,8 @@ class HuffmanCompressor:
         
         #If Some part of the self._strBinary was not processed       
         if not strBits == "":
-            self._lstBytesCompress.append(self._bitstring_to_bytes(strBits.zfill(self.LENGTH_CHARACTER_BITS)))
+            #Complete with LENGTH_CHARACTER_BITS adding 0 to the right 
+            self._lstBytesCompress.append(self._bitstring_to_bytes(strBits.ljust(self.LENGTH_CHARACTER_BITS, '0')))
         
     def getBinaryString(self):
         return self._strBinary

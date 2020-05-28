@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Sun May 24 17:12:18 2020
-
-@author: gabriel
+Script for execute the compressing and decompressing using Huffman algorithm.
+@author: gabrielrodriguezj
 """
 
 from alphabet import Alphabet
@@ -12,10 +11,11 @@ from huffmancompressor import HuffmanCompressor
 from huffmandecompressor import HuffmanDecompressor
 
 
-#strText = "what you see is what you get"
+forAlphabet = "what you see is what you get"
 strText = "who is that"
+strText = "what you see is what you ghetatttt"
 
-alphabet = Alphabet(strText)
+alphabet = Alphabet(forAlphabet)
 #print(alphabet.getAlphabetTable())
 
 tree = HuffmanTree(alphabet)
@@ -28,16 +28,15 @@ huffman.compress(strText)
 huffman2 = HuffmanDecompressor(tree)
 strDec = huffman2.decompress(huffman.getBinaryString())
 print(strDec)
+print(huffman.getBinaryString())
 
-#print(huffman.getBytesRepresentation())
+lst = huffman.getBytesRepresentation()
+#for i in lst:
+    #print(i)
+    #print(i[0])
 
 strDec2 = huffman2.decompressBytes(huffman.getBytesRepresentation())
 print(strDec2)
 
-
-
-"""huffman.compress("who is that")
-strDec3 = huffman2.decompress(huffman.getBinaryString())
-print(strDec3)
-"""
+print(strText)
           

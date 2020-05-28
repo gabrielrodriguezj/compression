@@ -9,7 +9,12 @@ symbols and probabilitie of every symbols
 
 
 class Alphabet:
+    
+    END_STRING_CHARACTER = chr(36)
+    
     def __init__(self, source):
+        
+        source = source + self.END_STRING_CHARACTER
         """
         Determite how often each character appears.
         """

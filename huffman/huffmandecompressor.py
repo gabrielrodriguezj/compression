@@ -5,6 +5,8 @@
 @author: gabrielrodriguezj
 """
 
+from alphabet import Alphabet
+
 class HuffmanDecompressor:
     LENGTH_CHARACTER_BITS = 8; #8 bits for encoding and decoding.
     
@@ -19,6 +21,10 @@ class HuffmanDecompressor:
         for bite in strBinaryToDecompress:
             strCode = strCode + bite
             character = self._mapInverseCodeHuffman.get(strCode, "")
+            
+            #If found end of string
+            if character == Alphabet.END_STRING_CHARACTER:
+                break
             if not character == "":
                 strCode = ""
                 strDecodified = strDecodified + character
@@ -34,12 +40,8 @@ class HuffmanDecompressor:
         for i in range(size):
             byte = lstBytesCompress[i]
             
-            #The last byte could not be of size 8, and this avoid the left pad
-            #with unnecesarys 0's
-            if i == size - 1:
-                strBytes = strBytes + bin(byte[0])[2:]
-            else:
-                strBytes = strBytes + '{0:08b}'.format(byte[0])
+            #strBytes = strBytes + bin(byte[0])[2:]
+            strBytes = strBytes + '{0:08b}'.format(byte[0])
             """
             In previous line is needed implement the constant LENGTH_CHARACTER_BITS,
             also implement that constant just in one class, not in two as is now
