@@ -30,9 +30,16 @@ class HuffmanDecompressor:
     """
     def decompressBytes(self, lstBytesCompress):
         strBytes = ""
-        for byte in lstBytesCompress:
-            #strBytes = strBytes + bin(byte[0])[2:]
-            strBytes = strBytes + '{0:08b}'.format(byte[0])
+        size = len(lstBytesCompress)
+        for i in range(size):
+            byte = lstBytesCompress[i]
+            
+            #The last byte could not be of size 8, and this avoid the left pad
+            #with unnecesarys 0's
+            if i == size - 1:
+                strBytes = strBytes + bin(byte[0])[2:]
+            else:
+                strBytes = strBytes + '{0:08b}'.format(byte[0])
             """
             In previous line is needed implement the constant LENGTH_CHARACTER_BITS,
             also implement that constant just in one class, not in two as is now

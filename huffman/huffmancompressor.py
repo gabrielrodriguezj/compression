@@ -35,7 +35,7 @@ class HuffmanCompressor:
         
         #If Some part of the self._strBinary was not processed       
         if not strBits == "":
-            self._lstBytesCompress.append(self._bitstring_to_bytes(strBits))
+            self._lstBytesCompress.append(self._bitstring_to_bytes(strBits.zfill(self.LENGTH_CHARACTER_BITS)))
         
     def getBinaryString(self):
         return self._strBinary

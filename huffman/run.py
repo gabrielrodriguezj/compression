@@ -29,13 +29,15 @@ huffman2 = HuffmanDecompressor(tree)
 strDec = huffman2.decompress(huffman.getBinaryString())
 print(strDec)
 
-print(huffman.getBytesRepresentation())
+#print(huffman.getBytesRepresentation())
 
 strDec2 = huffman2.decompressBytes(huffman.getBytesRepresentation())
 print(strDec2)
+
 
 
 """huffman.compress("who is that")
 strDec3 = huffman2.decompress(huffman.getBinaryString())
 print(strDec3)
 """
+          
