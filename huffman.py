@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Script for execute the compressing and decompressing using Huffman algorithm.
+Script for encode and decode string using Huffman algorithm.
 @author: gabrielrodriguezj
 """
 
