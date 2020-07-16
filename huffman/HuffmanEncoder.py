@@ -4,9 +4,9 @@
 
 @author: gabrielrodriguezj
 """
-from alphabet import Alphabet
+from util.Alphabet import Alphabet
 
-class HuffmanCompressor:
+class HuffmanEncoder:
     LENGTH_CHARACTER_BITS = 8; #8 bits for encoding and decoding.
     
     def __init__(self, huffmanTree):

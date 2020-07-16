@@ -4,10 +4,11 @@
 
 @author: gabriel
 """
-from node import Node
+from huffman.Node import Node
 from queue import PriorityQueue
 
 class HuffmanTree:
+    
     def __init__(self, alphabet):
         self._intMaxSizeCode = int(0)
         

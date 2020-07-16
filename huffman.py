@@ -5,10 +5,10 @@ Script for execute the compressing and decompressing using Huffman algorithm.
 @author: gabrielrodriguezj
 """
 
-from alphabet import Alphabet
-from huffmantree import  HuffmanTree
-from huffmancompressor import HuffmanCompressor
-from huffmandecompressor import HuffmanDecompressor
+from util.Alphabet import Alphabet
+from huffman.HuffmanTree import HuffmanTree 
+from huffman.HuffmanEncoder import HuffmanEncoder
+from huffman.HuffmanDecoder import HuffmanDecoder
 
 
 forAlphabet = "what you see is what you get"
@@ -21,11 +21,11 @@ alphabet = Alphabet(forAlphabet)
 tree = HuffmanTree(alphabet)
 #print(tree.getHuffmanCode())
 
-huffman = HuffmanCompressor(tree)
+huffman = HuffmanEncoder(tree)
 huffman.compress(strText)
 #print(huffman.getBinaryString())
 
-huffman2 = HuffmanDecompressor(tree)
+huffman2 = HuffmanDecoder(tree)
 strDec = huffman2.decompress(huffman.getBinaryString())
 print(strDec)
 print(huffman.getBinaryString())
@@ -39,4 +39,3 @@ strDec2 = huffman2.decompressBytes(huffman.getBytesRepresentation())
 print(strDec2)
 
 print(strText)
-          
