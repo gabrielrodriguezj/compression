@@ -6,15 +6,19 @@ Script for execute the compress and decompress strings using Huffman algorithm.
 """
 
 from lzw.LZWCompressor import LZWCompressor
+from lzw.LZWDecompressor import LZWDecompressor
 
 forAlphabet = "compadre no compro coco"
 compressor = LZWCompressor(forAlphabet)
 
-(compressedString, alphabet, numBitsForCharacter) = compressor.compress()
+(binaryString, alphabet, numBitsForCharacter) = compressor.compress()
 
-print(compressedString)
-print(alphabet.getAlphabetTable())
-print(numBitsForCharacter)
+#print(binaryString)
+#print(alphabet.getAlphabetTable())
+#print(numBitsForCharacter)
 
+decompressor = LZWDecompressor(binaryString, alphabet, numBitsForCharacter)
+strDecompressed = decompressor.decompress()
+print(strDecompressed)
 
 

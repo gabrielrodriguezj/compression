@@ -14,13 +14,17 @@ class LZWCompressor:
     LENGTH_CHARACTER_BITS = 8; #8 bits for encoding and decoding.
     
     def __init__(self, source):
+        self._source = source
         
-        self._alphabet = Alphabet(source, algorithm = "LZW")
         
-        source = source + Alphabet.END_STRING_CHARACTER
+    def compress(self):
+        
+        self._alphabet = Alphabet(self._source, algorithm = "LZW")
+        self._source =  self._source + Alphabet.END_STRING_CHARACTER
+        
         lstOutput = []        
         w = ""
-        for k in source:
+        for k in  self._source:
             wk = w + k
             if wk in self._alphabet.getAlphabetTable():
                 w = wk
@@ -65,8 +69,8 @@ class LZWCompressor:
             #Complete with LENGTH_CHARACTER_BITS adding 0 to the right 
             self._lstBytesCompress.append(self._bitstring_to_bytes(strBits.ljust(self.LENGTH_CHARACTER_BITS, '0')))
         
-    def compress(self):
-        return (self.getBytesRepresentation(), self.getAlphabet(), self.getNumBitsRepresentsCharacter())
+        return (self.getBinaryString(), self.getAlphabet(), self.getNumBitsRepresentsCharacter())
+        #return (self.getBytesRepresentation(), self.getAlphabet(), self.getNumBitsRepresentsCharacter())
     
     """
     Convert a string with 1 and 0 in the decimal representation
@@ -82,7 +86,7 @@ class LZWCompressor:
             return "{0:b}".format(intDecimal)
         else:
             strBinary = "{0:b}".format(intDecimal)
-            strBinary.ljust(padLeft, '0')
+            strBinary = strBinary.rjust(padLeft, '0')
             return strBinary
     
     def getNumBitsRepresentsCharacter(self):

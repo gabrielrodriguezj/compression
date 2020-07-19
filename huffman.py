@@ -23,7 +23,7 @@ tree = HuffmanTree(alphabet)
 
 huffman = HuffmanEncoder(tree)
 huffman.compress(strText)
-#print(huffman.getBinaryString())
+print(huffman.getBinaryString())
 #print(huffman.getBytesRepresentation())
 
 huffman2 = HuffmanDecoder(tree)

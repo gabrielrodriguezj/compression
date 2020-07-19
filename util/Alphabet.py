@@ -63,3 +63,7 @@ class Alphabet:
     def insertElement(self, key):
         self._alphabetTable[key] = self._i  
         self._i = self._i + 1
+    
+    def getInverseAlphabet(self):
+        inv_alphabet_table = {v: k for k, v in self._alphabetTable.items()}
+        return inv_alphabet_table
