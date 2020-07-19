@@ -23,7 +23,7 @@ class HuffmanEncoder:
         
         """
         Convert the 1 and 0 of self._strBinary to a valid string, this means
-        take LENGTH_CHARACTER_BITS elements and turn them it from to a binary 
+        to take LENGTH_CHARACTER_BITS elements and turn them it from a binary 
         code to a decimal code.
         """
         #intBits = math.ceil(len(self._strBinary) / self.LENGTH_CHARACTER_BITS)
@@ -44,7 +44,10 @@ class HuffmanEncoder:
     
     def getBytesRepresentation(self):
         return self._lstBytesCompress
-        
+    
+    """
+    Convert a string with 1 and 0 in the decimal representation
+    """
     def _bitstring_to_bytes(self, strBinary):
         return int(strBinary, 2).to_bytes(len(strBinary) // self.LENGTH_CHARACTER_BITS, byteorder='big')
     

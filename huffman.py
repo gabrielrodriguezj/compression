@@ -24,6 +24,7 @@ tree = HuffmanTree(alphabet)
 huffman = HuffmanEncoder(tree)
 huffman.compress(strText)
 #print(huffman.getBinaryString())
+#print(huffman.getBytesRepresentation())
 
 huffman2 = HuffmanDecoder(tree)
 strDec = huffman2.decompress(huffman.getBinaryString())

@@ -40,15 +40,26 @@ class Alphabet:
                 self._alphabetTable = lstSorted
             
             elif algorithm == "LZW":
-                i = 0
                 self._alphabetTable = {}
+                self._alphabetTable[self.END_STRING_CHARACTER] = 0
+                self._i = 1
                 for char in source:                    
                     if char not in self._alphabetTable:
-                        self._alphabetTable[char] = i  
-                        i = i + 1
+                        self._alphabetTable[char] = self._i  
+                        self._i = self._i + 1
                         
     """
     Return a sorted list with the symbols and their probability
     """
     def getAlphabetTable(self):
         return self._alphabetTable
+    
+    def getAlphabetLength(self):
+        return len(self._alphabetTable)
+    
+    """
+    Used for LZW algorithm
+    """
+    def insertElement(self, key):
+        self._alphabetTable[key] = self._i  
+        self._i = self._i + 1
