@@ -8,20 +8,22 @@ Implementation of the LZW compression algorithm
 
 from util.Alphabet import Alphabet
 import math
+import copy
 
 class LZWCompressor:
     
     LENGTH_CHARACTER_BITS = 8; #8 bits for encoding and decoding.
     
-    def __init__(self, source):
-        self._source = source
+    def __init__(self, alphabet):
+        """
+        The provided alphabet is copied(deep copy) in order to do not modify the original
+        one because will be used in the decompression process.
+        """
+        self._alphabet = copy.deepcopy(alphabet)
+
         
-        
-    def compress(self):
-        
-        self._alphabet = Alphabet(self._source, algorithm = "LZW")
-        self._source =  self._source + Alphabet.END_STRING_CHARACTER
-        
+    def compress(self, source):
+        self._source = source + Alphabet.END_STRING_CHARACTER
         lstOutput = []        
         w = ""
         for k in  self._source:
@@ -68,9 +70,12 @@ class LZWCompressor:
         if not strBits == "":
             #Complete with LENGTH_CHARACTER_BITS adding 0 to the right 
             self._lstBytesCompress.append(self._bitstring_to_bytes(strBits.ljust(self.LENGTH_CHARACTER_BITS, '0')))
+            
+        #print(self._alphabet.getAlphabetTable())
         
-        return (self.getBinaryString(), self.getAlphabet(), self.getNumBitsRepresentsCharacter())
-        #return (self.getBytesRepresentation(), self.getAlphabet(), self.getNumBitsRepresentsCharacter())
+        return (self.getBinaryString(), self.getNumBitsRepresentsCharacter())
+        
+        
     
     """
     Convert a string with 1 and 0 in the decimal representation
@@ -97,7 +102,5 @@ class LZWCompressor:
     
     def getBytesRepresentation(self):
         return self._lstBytesCompress
-    
-    def getAlphabet(self):
-        return self._alphabet
+
     
